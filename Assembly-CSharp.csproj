@@ -51,17 +51,40 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AimAtMouse.cs" />
-     <Compile Include="Assets\CameraRotate.cs" />
-     <Compile Include="Assets\Cleanup.cs" />
-     <Compile Include="Assets\DealDamage.cs" />
-     <Compile Include="Assets\Explode.cs" />
-     <Compile Include="Assets\Health.cs" />
-     <Compile Include="Assets\MaterialManipulation.cs" />
-     <Compile Include="Assets\MoveTowardPlayer.cs" />
-     <Compile Include="Assets\OrbitAroundPoint.cs" />
-     <Compile Include="Assets\Pickup.cs" />
-     <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\AINav.cs" />
+     <Compile Include="Assets\AISpawn.cs" />
+     <Compile Include="Assets\AIWeaponHandler.cs" />
+     <Compile Include="Assets\DrawBox.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\DebrisScript.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\ExplosiveBarrelScript.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\TargetScript.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Bullet\BulletScript.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Casings_&amp;_Projectiles\CasingScript.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Casings_&amp;_Projectiles\GrenadeScript.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Explosions_&amp;_Impacts\ExplosionScript.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Explosions_&amp;_Impacts\ImpactScript.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\FPSController\FpsControllerLPFP.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Misc\LookAtCamera.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Weapon_Scripts\AutomaticGunScriptLPFP.cs" />
+     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Weapon_Scripts\HandgunScriptLPFP.cs" />
+     <Compile Include="Assets\Scripts\AimAtMouse.cs" />
+     <Compile Include="Assets\Scripts\AllignGunLook.cs" />
+     <Compile Include="Assets\Scripts\CameraRotate.cs" />
+     <Compile Include="Assets\Scripts\Cleanup.cs" />
+     <Compile Include="Assets\Scripts\DealDamage.cs" />
+     <Compile Include="Assets\Scripts\Explode.cs" />
+     <Compile Include="Assets\Scripts\GetAnimatorPosition.cs" />
+     <Compile Include="Assets\Scripts\Health.cs" />
+     <Compile Include="Assets\Scripts\MaterialManipulation.cs" />
+     <Compile Include="Assets\Scripts\MoveTowardPlayer.cs" />
+     <Compile Include="Assets\Scripts\OrbitAroundPoint.cs" />
+     <Compile Include="Assets\Scripts\Pickup.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\ProjectileWeapon.cs" />
+     <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\Scripts\WeaponAgent.cs" />
+     <Compile Include="Assets\SpawnController.cs" />
+     <Compile Include="Assets\UIFaceCam.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

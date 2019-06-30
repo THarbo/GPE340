@@ -1,18 +1,24 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DealDamage.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Pickup.cs">
     <Files>
-      <File FileName="Assets\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\MoveTowardPlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\AimAtMouse.cs" Line="1" Column="1" />
-      <File FileName="Assets\CameraRotate.cs" Line="1" Column="1" />
-      <File FileName="Assets\OrbitAroundPoint.cs" Line="1" Column="1" />
-      <File FileName="Assets\MaterialManipulation.cs" Line="1" Column="1" />
-      <File FileName="Assets\Pickup.cs" Line="1" Column="1" />
-      <File FileName="Assets\Explode.cs" Line="1" Column="1" />
-      <File FileName="Assets\Cleanup.cs" Line="7" Column="33" />
-      <File FileName="Assets\DealDamage.cs" Line="25" Column="97" />
-      <File FileName="Assets\Health.cs" Line="20" Column="3" />
+      <File FileName="Assets\Scripts\Pickup.cs" Line="83" Column="94" />
+      <File FileName="Assets\AIWeaponHandler.cs" Line="67" Column="28" />
+      <File FileName="Assets\Scripts\Player.cs" Line="137" Column="4" />
+      <File FileName="Assets\Scripts\Weapon.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ProjectileWeapon.cs" Line="61" Column="56" />
+      <File FileName="Assets\Scripts\AllignGunLook.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Health.cs" Line="127" Column="25" />
+      <File FileName="Assets\Scripts\MoveTowardPlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AimAtMouse.cs" Line="24" Column="3" />
+      <File FileName="Assets\Scripts\GetAnimatorPosition.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Explode.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DealDamage.cs" Line="1" Column="1" />
+      <File FileName="Assets\UIFaceCam.cs" Line="1" Column="1" />
+      <File FileName="Assets\AINav.cs" Line="16" Column="2" />
+      <File FileName="Assets\DrawBox.cs" Line="20" Column="3" />
+      <File FileName="Assets\AISpawn.cs" Line="38" Column="79" />
+      <File FileName="Assets\SpawnController.cs" Line="13" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

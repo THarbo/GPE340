@@ -29,7 +29,14 @@ public class AINav : MonoBehaviour {
 		theAnim.SetFloat ("Horizontal", input.x);
 		theAnim.SetFloat ("Vertical", input.z);
 
-		theAgent.SetDestination (thePlayer.transform.position);
+		if (thePlayer != null){
+			theAgent.SetDestination (thePlayer.transform.position);
+		}
+
+		if (thePlayer == null){
+			thePlayer = GameObject.FindGameObjectWithTag ("Player");
+		}
+
 
 	}
 

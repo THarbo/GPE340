@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1985077310014382}
+  m_IsPrefabParent: 1
+--- !u!1 &1985077310014382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4292877064218010}
+  - component: {fileID: 114861084241986250}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4292877064218010
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1985077310014382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 59.501457, y: -2.7485805, z: 118.688065}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114861084241986250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1985077310014382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2eedf1ef663524469efbd44eeec74b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thePlayer: {fileID: 0}
+  startingLives: 3
+  livesLeft: 0
+  scoreBonusLife: 1
+  currentScore: 0
+  bonusScoreRequired: 100
+  bonusScoreTracker: 0
+  pickupTypes: 
+  livesInt: {fileID: 0}
+  scoreFloat: {fileID: 0}
+  isPaused: 0
+  healthObjects: []
+  spawnController: {fileID: 0}
+  healthPick: {fileID: 1315886555180104, guid: e85510d92e973c548b98eed3c1413d97, type: 2}
+  speedPick: {fileID: 1342188779191474, guid: 033727f7b929d004b97d751cf3b18f80, type: 2}
+  armorPick: {fileID: 1470015834258380, guid: 3a13ea62c63a4d44d8b4ec3d26d48b2f, type: 2}
+  assaultPick: {fileID: 1950582740139984, guid: f2260e9a1ff6d2440a7626289d2952f9,
+    type: 2}
+  handgunPick: {fileID: 1135638891063336, guid: 7e0b3d654fe51c6429f379998c453715,
+    type: 2}

@@ -9,7 +9,7 @@ public class WeaponAgent : MonoBehaviour {
 	public float speed = 4f;
 
 	// animator component attached to this character
-	protected Animator theAnim;
+	public Animator theAnim;
 	// bool to check toggle sprinting, and timer for sprinting powerup
 	public bool sprinting = false;
 	public bool sprintCheck;
@@ -24,8 +24,6 @@ public class WeaponAgent : MonoBehaviour {
 	// float for charge guns
 	public float shootForce = 50;
 
-
-	// weapon bools TODO: add this into a weaponagent and inherit to this script
 	public bool hasAssault = false;
 	public bool hasHandgun = false;
 	public ProjectileWeapon theWeapon;
@@ -36,14 +34,12 @@ public class WeaponAgent : MonoBehaviour {
 
 	public Text ammoText;
 
-	void Awake(){
+	protected virtual void Awake(){
 		if (theAnim == null) {
 			theAnim = gameObject.GetComponent<Animator> ();
 		}
 		rb = gameObject.GetComponent<Rigidbody> ();
-		if (gameObject.GetComponent<Player>()){
-			ammoText = GameObject.Find ("AmmoForeground").GetComponent<Text>();
-		}
+
 
 
 	}
@@ -72,6 +68,7 @@ public class WeaponAgent : MonoBehaviour {
 		if (!hasAssault && !hasHandgun){
 			return;
 		}
+		//TODO COMMENT
 		if (theWeapon.rightHandIKTarget) {
 			theAnim.SetIKPosition (AvatarIKGoal.RightHand, theWeapon.rightHandIKTarget.position);
 			theAnim.SetIKPositionWeight (AvatarIKGoal.RightHand, 1f);
@@ -82,7 +79,7 @@ public class WeaponAgent : MonoBehaviour {
 			theAnim.SetIKRotationWeight (AvatarIKGoal.RightHand, 0f);
 
 		}
-
+		//TODO COMMENT
 		if (theWeapon.leftHandIKTarget) {
 			theAnim.SetIKPosition (AvatarIKGoal.LeftHand, theWeapon.leftHandIKTarget.position);
 			theAnim.SetIKPositionWeight (AvatarIKGoal.LeftHand, 1f);

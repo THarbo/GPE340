@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour {
 
 	public static GameManager Instance { get; private set;}
 
 	public GameObject thePlayer;
+	public UIHandler uiHandler;
+
+	public UnityEvent gameOverEvent;
+	public UnityEvent pauseEvent;
 
 	[SerializeField]
 	private int startingLives = 3;
@@ -24,24 +30,37 @@ public class GameManager : MonoBehaviour {
 	[SerializeField]
 	public int scorePerKill { get; private set;}
 
+	//audio
+	public AudioSource musicSource;
+	public AudioSource soundSource;
+	public AudioClip handgunSound;
+	public AudioClip rifleSound;
+	public AudioClip missSound;
+	public AudioClip hitSound;
+
+	// pickup cleanup vars
 	private List<GameObject> levelPickups;
 	private List<Vector3> pickupPos = new List<Vector3>();
 	private List<Quaternion> pickupRot = new List<Quaternion>();
 	private List<int> pickupTypes = new List<int>();
 
-
+	// ui stuff, should probably go to ui handler
 	public Text livesInt;
 	public Text scoreFloat;
 
+	// game flow
 	public bool isPaused = false;
 	public bool gameOver = false;
+	public bool gameStart = true;
 	//static private bool _isPaused;
 
 	public List<Health> healthObjects = new List<Health>();
 
 
 	public SpawnController spawnController;
+	public int currentKilled = 0;
 
+	// pickup vars
 	public GameObject healthPick;
 	public GameObject speedPick;
 	public GameObject armorPick;
@@ -52,6 +71,7 @@ public class GameManager : MonoBehaviour {
 	public void Awake(){
 		Instance = this;
 		scorePerKill = 10;
+		musicSource = GameObject.Find ("Audio Source").GetComponent<AudioSource> ();
 
 
 	}
@@ -59,6 +79,7 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		spawnController = GameObject.Find ("Spawner").GetComponent<SpawnController> ();
+		//source.Play ();
 
 		StartCoroutine (LateStart (1f));
 		livesLeft = startingLives;
@@ -92,6 +113,11 @@ public class GameManager : MonoBehaviour {
 
 		if (thePlayer && livesLeft <= 0){
 			EndGame ();
+		}
+
+		if (currentKilled >= spawnController.maxToSpawn){
+			EndGame();
+			uiHandler.winCon = true;
 		}
 
 		// if you gain enough score to get a life, iterate the lives positively
@@ -137,14 +163,13 @@ public class GameManager : MonoBehaviour {
 
 	// this brings up the pause menu
 	public void TogglePause(){
+		
 		isPaused = !isPaused;
+		pauseEvent.Invoke ();
 	}
 
 	public void RestartGame(){
-		//temporary restart logic
-		// TODO: have this go to the 'start screen scene'?
-		// THIS ONLY WORKS ONCE TO RESPAWN PLAYER?!
-		//TogglePause();
+		
 		if (thePlayer){
 			Destroy (thePlayer);
 		}
@@ -191,8 +216,10 @@ public class GameManager : MonoBehaviour {
 		//TogglePause ();
 	}
 
-	public void EndGame(){
-		isPaused = true;
+	public void EndGame(){		
+		gameOverEvent.Invoke ();
 		gameOver = true;
+		isPaused = true;
 	}
+
 }

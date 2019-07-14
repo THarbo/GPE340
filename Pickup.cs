@@ -25,9 +25,9 @@ public class Pickup : MonoBehaviour {
 
 	private MeshRenderer[] theRend;
 	private Collider theColl;
-	//Rigidbody rb = gameObject.GetComponent<Rigidbody> ();
 
-	[SerializeField] private PickupType _pickupType;
+	[SerializeField] 
+	private PickupType _pickupType;
 
 	public PickupType pickupType { get{ return _pickupType;}}
 
@@ -38,8 +38,7 @@ public class Pickup : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () {		
 	}
 
 	void OnTriggerEnter(Collider other){
@@ -61,12 +60,7 @@ public class Pickup : MonoBehaviour {
 			}
 		}
 
-		if (other.CompareTag ("Player") ){ //|| other.CompareTag ("AI")
-			//rb.isKinematic = true;
-
-
-
-			//rb.isKinematic = false;
+		if (other.CompareTag ("Player") ){ 
 
 			Player thePlayer = other.GetComponent<Player>();
 		
@@ -119,11 +113,8 @@ public class Pickup : MonoBehaviour {
 				else {
 					thePlayer.theWeapon.ammo += 12;
 				}
-				//respawn logic
-
-
 			}
-
+			//respawn logic
 			if (respawning) {
 				foreach (MeshRenderer rend in theRend) {
 					rend.enabled = false;

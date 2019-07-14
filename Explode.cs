@@ -6,7 +6,8 @@ public class Explode : MonoBehaviour {
 
 	public float lifeTime = 2;
 
-	public ParticleSystem explosion;
+	public ParticleSystem explosionHit;
+	public ParticleSystem explosionMiss;
 
 
 	// Use this for initialization
@@ -19,13 +20,22 @@ public class Explode : MonoBehaviour {
 		lifeTime -= Time.deltaTime;
 
 		if (lifeTime <= 0){
-			Instantiate (explosion, transform.position, transform.rotation);
+			Instantiate (explosionHit, transform.position, transform.rotation);
 			Destroy (gameObject);
 		}
 	}
 
-	void OnCollisionEnter(){
-		Instantiate (explosion, transform.position, transform.rotation);
+	void OnCollisionEnter(Collision hit){
+
+		GameObject collidedWith = hit.gameObject;
+
+		if (hit.gameObject.CompareTag("Player") || hit.gameObject.CompareTag("AI")){
+			Instantiate (explosionHit, transform.position, transform.rotation);
+		}else {
+			Instantiate (explosionMiss, transform.position, transform.rotation);
+			GameManager.Instance.soundSource.PlayOneShot (GameManager.Instance.missSound);
+		}
+
 		Destroy (gameObject);
 	}
 }

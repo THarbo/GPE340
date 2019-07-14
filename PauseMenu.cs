@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {		
+		
 		children = new GameObject[transform.childCount];
 		for (int i = 0; i < transform.childCount; i++) {
 			GameObject currentChild = transform.GetChild (i).gameObject;

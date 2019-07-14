@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ProjectileWeapon : Weapon {
 
@@ -24,9 +25,21 @@ public class ProjectileWeapon : Weapon {
 	public int ammo;
 	private int maxAmmo;
 
+	private AudioSource gunSource;
+	public AudioClip handgunSound;
+	public AudioClip rifleSound;
+
 	public float refire = 0.2f;
 
+	void Awake(){
 
+		Scene currentScene = SceneManager.GetActiveScene ();
+		int sceneIndex = currentScene.buildIndex;
+		if (sceneIndex == 0){			
+			return;
+		}
+		gunSource = GameObject.Find ("SoundSource").GetComponent<AudioSource>();
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -74,6 +87,10 @@ public class ProjectileWeapon : Weapon {
 				shot.GetComponent<Rigidbody> ().AddForce (theAgent.theBarrel.transform.forward * theAgent.shootForce, ForceMode.Impulse);
 				Debug.Log ("shooting");
 				hasFired = true;
+				GameManager.Instance.soundSource.pitch = 2;
+				GameManager.Instance.soundSource.PlayOneShot (GameManager.Instance.handgunSound);
+//				gunSource.clip = handgunSound;
+//				gunSource.Play ();
 				if (theAgent.CompareTag("Player")){
 					ammo--;
 				}
@@ -86,9 +103,14 @@ public class ProjectileWeapon : Weapon {
 				if (theAgent.CompareTag("Player")){
 					ammo--;
 				}
-
+				GameManager.Instance.soundSource.pitch = 1;
+				GameManager.Instance.soundSource.PlayOneShot(GameManager.Instance.rifleSound);
+//				gunSource.clip = rifleSound;
+//				gunSource.Play ();
 			}
 		}
+
+
 //		if (gameObject.GetComponentInParent<Animator> ().gameObject.CompareTag ("AI")) {
 //			if (theType == WeaponType.HANDGUN && hasFired == false) {
 //				GameObject shot = Instantiate (theAI.theBullet, theAI.theBarrel.transform.position + (theAI.theBarrel.transform.forward * 0.4499f) + (theAI.theBarrel.transform.up * 0.0084f), transform.rotation);

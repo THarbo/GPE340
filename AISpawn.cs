@@ -57,6 +57,7 @@ public class AISpawn : MonoBehaviour {
 	public void HandleEnemyDeath(){
 		currentEnemies--;
 		gameManager.IterateScore (GameManager.Instance.scorePerKill * modifier);
+		GameManager.Instance.currentKilled++;
 	}
 
 	// adjusts max to spawn (used by the slider in pause menu)

@@ -69,8 +69,10 @@
      <Compile Include="Assets\Scripts\AISpawn.cs" />
      <Compile Include="Assets\Scripts\AIWeaponHandler.cs" />
      <Compile Include="Assets\Scripts\AllignGunLook.cs" />
+     <Compile Include="Assets\Scripts\AlphaAdjust.cs" />
      <Compile Include="Assets\Scripts\CameraRotate.cs" />
      <Compile Include="Assets\Scripts\Cleanup.cs" />
+     <Compile Include="Assets\Scripts\ColorRandom.cs" />
      <Compile Include="Assets\Scripts\DealDamage.cs" />
      <Compile Include="Assets\Scripts\DrawBox.cs" />
      <Compile Include="Assets\Scripts\Explode.cs" />

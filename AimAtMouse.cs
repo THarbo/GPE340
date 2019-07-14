@@ -9,7 +9,8 @@ public class AimAtMouse : MonoBehaviour
 
 	private void Update()
 	{
-		if (GameManager.Instance.isPaused){
+		
+		if (GameManager.Instance.isPaused || Input.GetKey(KeyCode.C)){
 			return;
 		}
 

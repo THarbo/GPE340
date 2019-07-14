@@ -64,10 +64,7 @@ public class MoveTowardPlayer : MonoBehaviour {
 			// create a float that multiplies speed by time to create a smooth movement
 			float movement = speed * Time.deltaTime;
 
-			//transform.position = thePlayer.transform.position + rotatedOffset;
 			// move the camera 
-
-
 			if (Input.GetKeyDown (KeyCode.LeftShift)) {
 				// Get correct position
 				rotatedOffset = Quaternion.LookRotation (thePlayer.transform.forward) * offset;
@@ -84,8 +81,8 @@ public class MoveTowardPlayer : MonoBehaviour {
 
 
 	}
-
-	void ZoomCamera(){
-		
-	}
+	//TODO: make this work
+//	void ZoomCamera(){
+//		
+//	}
 }

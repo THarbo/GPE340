@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : WeaponAgent {
 
@@ -41,7 +42,14 @@ public class Player : WeaponAgent {
 //
 //	public Text ammoText;
 
-	void Awake(){
+	protected override void  Awake(){
+		// make sure not to throw null errors in main menu
+		base.Awake();
+		Scene currentScene = SceneManager.GetActiveScene ();
+		int sceneIndex = currentScene.buildIndex;
+		if (sceneIndex == 0){			
+			return;
+		}
 		if (theAnim == null) {
 			theAnim = gameObject.GetComponent<Animator> ();
 		}
@@ -52,6 +60,14 @@ public class Player : WeaponAgent {
 
 	// Update is called once per frame
 	void Update () {
+		// make sure not to throw null errors in main menu
+		Scene currentScene = SceneManager.GetActiveScene ();
+		int sceneIndex = currentScene.buildIndex;
+		if (currentScene.buildIndex == 0){
+			theAnim.speed = 0.3f;
+			return;
+		}
+
 		if (GameManager.Instance.isPaused){
 			return;
 		}
@@ -70,10 +86,10 @@ public class Player : WeaponAgent {
 
 		// change in speed with sprint pickup, may need to make into own script
 		if (sprinting) {
-			theAnim.speed = 2;
+			theAnim.speed = 1.5f;
 			sprintCheck = true;
 		} else {
-			theAnim.speed = 1;
+			theAnim.speed = 1.0f;
 			sprintCheck = false;
 		}
 
@@ -134,32 +150,32 @@ public class Player : WeaponAgent {
 	}
 
 	 //IK stuff, TODO: add to AI
-	protected virtual void OnAnimatorIK(){
-		if (!hasAssault && !hasHandgun){
-			return;
-		}
-		if (theWeapon.rightHandIKTarget) {
-			theAnim.SetIKPosition (AvatarIKGoal.RightHand, theWeapon.rightHandIKTarget.position);
-			theAnim.SetIKPositionWeight (AvatarIKGoal.RightHand, 1f);
-			theAnim.SetIKRotation (AvatarIKGoal.RightHand, theWeapon.rightHandIKTarget.rotation);
-			theAnim.SetIKRotationWeight (AvatarIKGoal.RightHand, 1f);
-		} else {
-			theAnim.SetIKPositionWeight (AvatarIKGoal.RightHand, 0f);
-			theAnim.SetIKRotationWeight (AvatarIKGoal.RightHand, 0f);
-
-		}
-
-		if (theWeapon.leftHandIKTarget) {
-			theAnim.SetIKPosition (AvatarIKGoal.LeftHand, theWeapon.leftHandIKTarget.position);
-			theAnim.SetIKPositionWeight (AvatarIKGoal.LeftHand, 1f);
-			theAnim.SetIKRotation (AvatarIKGoal.LeftHand, theWeapon.leftHandIKTarget.rotation);
-			theAnim.SetIKRotationWeight (AvatarIKGoal.LeftHand, 1f);
-		} else {
-			theAnim.SetIKPositionWeight (AvatarIKGoal.LeftHand, 0f);
-			theAnim.SetIKRotationWeight (AvatarIKGoal.LeftHand, 0f);
-
-		}
-	}
+//	protected virtual void OnAnimatorIK(){
+//		if (!hasAssault && !hasHandgun){
+//			return;
+//		}
+//		if (theWeapon.rightHandIKTarget) {
+//			theAnim.SetIKPosition (AvatarIKGoal.RightHand, theWeapon.rightHandIKTarget.position);
+//			theAnim.SetIKPositionWeight (AvatarIKGoal.RightHand, 1f);
+//			theAnim.SetIKRotation (AvatarIKGoal.RightHand, theWeapon.rightHandIKTarget.rotation);
+//			theAnim.SetIKRotationWeight (AvatarIKGoal.RightHand, 1f);
+//		} else {
+//			theAnim.SetIKPositionWeight (AvatarIKGoal.RightHand, 0f);
+//			theAnim.SetIKRotationWeight (AvatarIKGoal.RightHand, 0f);
+//
+//		}
+//
+//		if (theWeapon.leftHandIKTarget) {
+//			theAnim.SetIKPosition (AvatarIKGoal.LeftHand, theWeapon.leftHandIKTarget.position);
+//			theAnim.SetIKPositionWeight (AvatarIKGoal.LeftHand, 1f);
+//			theAnim.SetIKRotation (AvatarIKGoal.LeftHand, theWeapon.leftHandIKTarget.rotation);
+//			theAnim.SetIKRotationWeight (AvatarIKGoal.LeftHand, 1f);
+//		} else {
+//			theAnim.SetIKPositionWeight (AvatarIKGoal.LeftHand, 0f);
+//			theAnim.SetIKRotationWeight (AvatarIKGoal.LeftHand, 0f);
+//
+//		}
+//	}
 
 //	public void IterateLives(int iteration){
 //		livesLeft += iteration;

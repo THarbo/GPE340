@@ -13,6 +13,9 @@ public class RagdollHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {		
+		if (ragdolling){
+			RagdollOn ();
+		}
 	}
 
 	// happens when you die

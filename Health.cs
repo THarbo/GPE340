@@ -45,50 +45,36 @@ public class Health : MonoBehaviour {
 	public GameObject rifleSpawn;
 	public bool hasDropped = false;
 
-	public AIWeaponHandler aiWeaponHandler;
+	private AIWeaponHandler aiWeaponHandler;
+	private GameObject player;
 
 	public WeightedObject[] itemDrops;
-
-	// create a class to use for drops
-
-//	[System.Serializable]
-//	public class WeightedObject
-//	{
-//		[SerializeField, Tooltip("The object selected by this choice.")]
-//		private Object value;
-//		[SerializeField, Tooltip("The chance to select the value.")]
-//		private double chance = 1.0; 
-//	}
-
-
-
-	// Use this for initialization
 
 	void Awake(){	
 
 		aiWeaponHandler = gameObject.GetComponent<AIWeaponHandler> ();
-		//spawnController = GameObject.Find ("Spawner").GetComponent<SpawnController> ();
-		if (gameObject.CompareTag("Player")){
+		if (gameObject.GetComponent<Player>()){
+			player = gameObject;
 			armorBar = GameObject.Find ("ArmorBar").GetComponent<Image>();
 			healthBar = GameObject.Find ("HealthBar").GetComponent<Image>();
 			armorText = GameObject.Find ("ArmorText").GetComponent<Text>();
-			// will need to figure out a better method of this in order to make sure multiple
-			// players can play
-			//theSpawn = spawnController.theSpawns[Random.Range (0, 2)].GetComponent;
 			deathPenalty = -1;
-			} 
-
-
+		}
 	}
 
 	// TODO: fix hardcoding of bar width
-	void Start () {		
-		if (gameObject.CompareTag ("Player")) {
+	void Start () {	
+		
+		armor = 0;
+		expectedArmor = 0;
+
+		if (player) {
 			health = maxHealth;
 			expectedHealth = health;
 			vec2Second = 48;
 			GameObject[] theSpawns = GameObject.FindGameObjectsWithTag ("Spawn");
 			healthBar.rectTransform.sizeDelta = new Vector2 (health, vec2Second);
+			armorBar.rectTransform.sizeDelta = new Vector2 (armor, vec2Second);
 			//theSpawn = theSpawns[Random.Range (0, theSpawns.Length)].GetComponent<AISpawn>();
 		} else {
 			health = 150;
@@ -96,14 +82,11 @@ public class Health : MonoBehaviour {
 			expectedHealth = health;
 			vec2Second = 100;
 		}
-		armor = 0;
-		expectedArmor = 0;
+
 		theRagdoll = gameObject.GetComponent<RagdollHandler> ();
 
-		if (aiWeaponHandler) {
-			Debug.Log ("ai here");
-			if (aiWeaponHandler.theWeapon.theType == ProjectileWeapon.WeaponType.HANDGUN) {
-				Debug.Log (itemDrops [0]);
+		if (aiWeaponHandler) {			
+			if (aiWeaponHandler.theWeapon.theType == ProjectileWeapon.WeaponType.HANDGUN) {				
 				itemDrops [0].chance = 0.5;
 				itemDrops [1].chance = 0;
 			}
@@ -112,14 +95,12 @@ public class Health : MonoBehaviour {
 				itemDrops [1].chance = 0.5;
 			}
 		}
-
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		// TODO: fix spawning null errors
+
 		// cap health to maxhealth
 		if (health > maxHealth){
 			health = maxHealth;
@@ -141,7 +122,7 @@ public class Health : MonoBehaviour {
 		}
 
 		// same check as above for expected health
-		if (gameObject.CompareTag ("Player")) {
+		if (player) {
 			if (expectedArmor != armor) {
 				expectedArmor = armor;
 				armorBar.rectTransform.sizeDelta = new Vector2 (armor, vec2Second);
@@ -149,7 +130,7 @@ public class Health : MonoBehaviour {
 		}
 
 		// TODO: update so that UI is not tied to the player script
-		if (gameObject.CompareTag ("Player")) {
+		if (player) {
 			if (armor > 0) {
 				armorText.text = "Armor";
 			} else {
@@ -170,12 +151,7 @@ public class Health : MonoBehaviour {
 				GameManager.Instance.IterateLives (deathPenalty);
 				Destroy (gameObject);
 			}
-
-
-		}
-
-
-				
+		}				
 	}
 
 	// TODO: decouple the UI here so that it does not effect potential other player UI
@@ -195,49 +171,16 @@ public class Health : MonoBehaviour {
 			healthBar.rectTransform.sizeDelta = new Vector2 (health, vec2Second);
 			//}
 		}
+		GameManager.Instance.soundSource.PlayOneShot(GameManager.Instance.hitSound);
 	}
 
 	public void Die(){
-//		if (gameObject.CompareTag ("Player")) {
-//			gameObject.GetComponent<Rigidbody> ().isKinematic = true;
-//			gameObject.GetComponent<CapsuleCollider> ().enabled = false;
-//			foreach (SkinnedMeshRenderer skin in gameObject.GetComponentsInChildren<SkinnedMeshRenderer> ()) {
-//				skin.enabled = false;
-//			}
-//			spawnTimer -= Time.deltaTime;
-//			if (spawnTimer <= 0) {
-//				gameObject.GetComponent<Rigidbody> ().isKinematic = false;
-//				gameObject.GetComponent<CapsuleCollider> ().enabled = true;
-//				foreach (SkinnedMeshRenderer skin in gameObject.GetComponentsInChildren<SkinnedMeshRenderer> ()) {
-//					skin.enabled = true;
-//					health = maxHealth;
-//					spawnTimer = 5;
-//				}
-//			}
-//		} else {
-
-		// if you are an AI...
-//		if (gameObject.CompareTag ("AI")) {			
-//			// iterate your spawns current enemies
-//			//theSpawn.currentEnemies--;
-//			// toggle ragdoll
-//			theRagdoll.RagdollOn ();
-//			// when timer is 0...
-//			if (cleanUpTimer <= 0) {
-//				// .. destroy your body
-//				Destroy (gameObject);
-//			}
-//
-//		}else {
-			// if you are a player...
 			// ... toggle ragdoll
 		theRagdoll.RagdollOn ();	
-
 		isDead = true;
-			//}
-		//}
 	}
 
+	// TODO get this to work properly
 //	public int Select(){
 //		System.Random rnd = new System.Random();
 //		int selectedIndex = System.Array.BinarySearch (itemDrops, rnd.NextDouble () * itemDrops.Length);
@@ -268,7 +211,7 @@ public class Health : MonoBehaviour {
 				}
 
 				// these are the weights
-				int dropGun = 30;
+				int dropGun = 50;
 				int dropHealth = 85;
 				// dont need dropSpeed since it is the higher bound
 				//int dropSpeed = 100;
@@ -309,7 +252,7 @@ public class Health : MonoBehaviour {
 			// turn off mouse aim
 			gameObject.GetComponent<AimAtMouse> ().enabled = false;
 			// make sure player is there ...
-			if (player){
+			if (player && player.theWeapon){
 				// ... and get rid of the gun
 				// step 1 instantiate the right kind of weapon
 				if(player.theWeapon.theType == ProjectileWeapon.WeaponType.HANDGUN){

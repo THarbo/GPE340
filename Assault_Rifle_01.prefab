@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1719131515888008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8031373, y: 0.595, z: 2.385825}
+  m_LocalPosition: {x: 739.38354, y: 688.89703, z: -611.7761}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4111954246492966}
@@ -378,3 +378,10 @@ MonoBehaviour:
   parentObj: {fileID: 0}
   hasFired: 0
   theType: 1
+  thePlayer: {fileID: 0}
+  theAI: {fileID: 0}
+  theAgent: {fileID: 0}
+  ammo: 0
+  handgunSound: {fileID: 8300000, guid: f51e493a8b9df094b868413e03a7d0e1, type: 3}
+  rifleSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
+  refire: 0.2
